@@ -1,17 +1,23 @@
 import { MongoClient } from "mongodb";
+import dotenv from "dotenv";
+dotenv.config();
 
+//const variable = process.env.MONGO_CONN_STRING
+//console.log(variable);
+const connectionString = "mongodb+srv://ayuri_singh:Smakoskippyangel29@cluster0.okwhgf2.mongodb.net/" ;
+console.log(connectionString);
 //const connectionString = process.env.ATLAS_URI;
-const connectionString = "mongodb+srv://ayurisingh2924:Passw0rd1@cluster0.okwhgf2.mongodb.net/"
+//console.log(connectionString);
+
 const client = new MongoClient(connectionString);
 
 let conn;
 try {
   conn = await client.connect();
-  console.log("sucessfully log in the db")
+  console.log("successfully connected to Db")
 } catch(e) {
   console.error(e);
 }
+  let db = conn.db("apds");
 
-let db = conn.db("apds");
-
-export default db;
+  export default db;
